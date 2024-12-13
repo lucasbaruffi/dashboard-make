@@ -2,7 +2,7 @@
 import json
 import requests
 
-maxLimit = 999999
+maxLimit = 10000
 
 def formatarDict(j):
     import json
