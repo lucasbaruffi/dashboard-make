@@ -1,33 +1,16 @@
 # Chamada da API
 from config import settings
 import endpoints
-import json
 
 url = settings.MAKE_URL
 token = settings.MAKE_TOKEN
 organizationId = settings.MAKE_ORGANIZATION_ID
 
 # Pega todos os clientes
-#res = endpoints.scenarios(url, token, organizationId, 1)
-
 # Aqui ele gera um dicionário com todos os cenários
-#allCenarios = json.loads(res)
+res = endpoints.scenarios(url, token, organizationId, 1)
 
-
-
-
+# Pega o consumo dos cenários
+# Retorna o consumo de cenários que foram utilizados ao menos uma vez
 comsumptionCenarios = endpoints.comsumptions(url, token, organizationId)
-print(comsumptionCenarios)
 
-# for cenario in totClientes["scenarios"]:
-#     print(cenario)
-#     id = cenario["id"]
-#     name = cenario["name"]
-#    # folder = cenario["folder"]
-# 
-# 
-#     print(f"{id} - {name}")
-
-
-# for c in res["scenarios"]:
-#    print(res["scenarios"][c]["id"])

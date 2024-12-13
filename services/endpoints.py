@@ -1,7 +1,32 @@
 # Retorna todos os cenários, ativos e inativos
-def scenarios(url, token, organizationId, limit=10000):
-    import requests
+import json
+import requests
+
+maxLimit = 999999
+
+def formatarDict(j):
+    import json
+    j = j.text
+    return json.loads(j)
+
+def scenarios(url, token, organizationId, limit=maxLimit):
     endpoint = "scenarios"
+    url = f"{url}{endpoint}?organizationId={organizationId}&pg[limit]={limit}"
+
+    body = {}
+    headers = {
+        'Authorization': f'Token {token}',
+        'Content-Type': 'application/json',
+    }
+    response = requests.get(url, headers=headers, data=body)
+    
+    return formatarDict(response)
+
+
+
+# Retorna o consumo dos cenários que tiveram ao menos uma execução no período
+def comsumptions(url, token, organizationId, limit=maxLimit):
+    endpoint = "scenarios/consumptions"
     url = f"{url}{endpoint}?organizationId={organizationId}&pg[limit]={limit}"
 
     body = {}
@@ -12,20 +37,4 @@ def scenarios(url, token, organizationId, limit=10000):
 
     response = requests.get(url, headers=headers, data=body)
 
-    return response.text
-
-# Retorna o consumo dos cenários que tiveram ao menos uma execução no período
-def comsumptions(url, token, organizationId):
-    import requests
-    endpoint = "scenarios/consumptions"
-    url = f"{url}{endpoint}?organizationId={organizationId}"
-
-    body = {}
-    headers = {
-        'Authorization': f'Token {token}',
-        'Content-Type': 'application/json',
-    }
-
-    response = requests.get(url, headers=headers, data=body)
-
-    return response.text
+    return formatarDict(response)
