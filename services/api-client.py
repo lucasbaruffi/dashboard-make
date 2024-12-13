@@ -7,19 +7,27 @@ url = settings.MAKE_URL
 token = settings.MAKE_TOKEN
 organizationId = settings.MAKE_ORGANIZATION_ID
 
-res = endpoints.scenarios(url, token, organizationId, 1)
-res = json.loads(res)
+# Pega todos os clientes
+#res = endpoints.scenarios(url, token, organizationId, 1)
+
+# Aqui ele gera um dicionário com todos os cenários
+#allCenarios = json.loads(res)
 
 
-for cenario in res["scenarios"]:
-    print(cenario)
-    id = cenario["id"]
-    name = cenario["name"]
-   # folder = cenario["folder"]
 
 
-    print(f"{id} - {name}")
+comsumptionCenarios = endpoints.comsumptions(url, token, organizationId)
+print(comsumptionCenarios)
+
+# for cenario in totClientes["scenarios"]:
+#     print(cenario)
+#     id = cenario["id"]
+#     name = cenario["name"]
+#    # folder = cenario["folder"]
+# 
+# 
+#     print(f"{id} - {name}")
 
 
-#for c in res["scenarios"]:
- #   print(res["scenarios"][c]["id"])
+# for c in res["scenarios"]:
+#    print(res["scenarios"][c]["id"])
