@@ -30,5 +30,10 @@ comsumptionCenarios = endpoints.comsumptions(url, token, organizationId)
 print(f"Cenários executados desde {format_date(comsumptionCenarios["lastReset"])}: {len(comsumptionCenarios["scenarioConsumptions"])}")
 
 
+cenariosParados = 0
+for cenario in comsumptionCenarios["scenarioConsumptions"]:
+    if cenario["transfer"] < 50:
+        cenariosParados += 1
 
-
+print(f"Cenários parados: {cenariosParados}")
+      
