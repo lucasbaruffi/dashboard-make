@@ -9,7 +9,7 @@ def format_date(iso_date: str) -> str:
     # Formata a data no formato desejado
     return dt.strftime("%d/%m/%Y %H:%M")
 
-def linha(txt):
+def linha(txt="-"):
     print(f"{txt:-^50}")
 
 url = settings.MAKE_URL
@@ -30,10 +30,20 @@ comsumptionCenarios = endpoints.comsumptions(url, token, organizationId)
 print(f"Cenários executados desde {format_date(comsumptionCenarios["lastReset"])}: {len(comsumptionCenarios["scenarioConsumptions"])}")
 
 
-cenariosParados = 0
+cenariosParados = []
 for cenario in comsumptionCenarios["scenarioConsumptions"]:
     if cenario["transfer"] < 50:
-        cenariosParados += 1
+        cenariosParados.append(cenario['scenarioId'])
 
-print(f"Cenários parados: {cenariosParados}")
-      
+print(f"Cenários sem fluxo de dados: {len(cenariosParados)}")
+
+linha()
+linha("Cenarios à Excluir:")
+linha()
+
+listaCenariosParados = []
+
+for cenario in cenariosParados:
+    for c in res["scenarios"]:
+        if c["id"] == cenario:
+            print(c["name"])
