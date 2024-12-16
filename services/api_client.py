@@ -37,13 +37,19 @@ for cenario in comsumptionCenarios["scenarioConsumptions"]:
 
 print(f"Cenários sem fluxo de dados: {len(cenariosParados)}")
 
-linha()
-linha("Cenarios à Excluir:")
-linha()
+# linha()
+# linha("Cenarios à Excluir:")
+# linha()
+# 
+# listaCenariosParados = []
+# 
+# for cenario in cenariosParados:
+#     for c in res["scenarios"]:
+#         if c["id"] == cenario:
+#             print(c["name"])
 
-listaCenariosParados = []
-
-for cenario in cenariosParados:
-    for c in res["scenarios"]:
-        if c["id"] == cenario:
-            print(c["name"])
+linha()
+int(input("""Selecione uma opção:
+1 - Gerar Relatório
+2 - Desativar Todos
+Digite aqui: """))
