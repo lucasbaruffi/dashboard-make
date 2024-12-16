@@ -41,8 +41,6 @@ print(f"Cenários sem fluxo de dados: {len(cenariosParados)}")
 # linha("Cenarios à Excluir:")
 # linha()
 # 
-# listaCenariosParados = []
-# 
 # for cenario in cenariosParados:
 #     for c in res["scenarios"]:
 #         if c["id"] == cenario:
